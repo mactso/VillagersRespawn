@@ -2,6 +2,8 @@ package com.mactso.villagersrespawn.events;
 
 import java.util.Optional;
 
+import com.mactso.villagersrespawn.config.MyConfig;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
@@ -36,7 +38,7 @@ public class VillagerDeathEvent {
 				BlockPos villagerHomePos = gVHP.getPos();
 				eventEntity.setPosition(villagerHomePos.getX(), villagerHomePos.getY(), villagerHomePos.getZ() );
 				ve.extinguish();
-				ve.setHealth(20.0f);
+				ve.setHealth(MyConfig.respawnHealth);
 				event.setCanceled(true);
 			}
 		}
