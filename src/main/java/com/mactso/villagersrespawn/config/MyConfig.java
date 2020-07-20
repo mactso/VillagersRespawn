@@ -1,33 +1,19 @@
 package com.mactso.villagersrespawn.config;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mactso.villagersrespawn.Main;
 
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
 
+@Mod.EventBusSubscriber(modid = Main.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
 // @Mod.EventBusSubscriber(modid = Main.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class MyConfig
 {
@@ -41,8 +27,12 @@ public class MyConfig
 		SERVER = specPair.getLeft();
 	}
 
+	public static int debugLevel;
 	public static int respawnHealth;
-
+	public static boolean respawnXpLoss;
+	public static int respawnPercentage;
+	public static boolean hardModeZombieDeaths;
+	
 	@SubscribeEvent
 	public static void onModConfigEvent(final ModConfig.ModConfigEvent configEvent)
 	{
@@ -54,25 +44,53 @@ public class MyConfig
 
 	public static void bakeConfig()
 	{
+		debugLevel = SERVER.debugLevel.get();
 		respawnHealth = SERVER.respawnHealth.get();
+		respawnXpLoss = SERVER.respawnXpLoss.get();
+		respawnPercentage = SERVER.respawnPercentage.get();
+		hardModeZombieDeaths = SERVER.hardModeZombieDeaths .get();
+
 	}
 
 
 	public static class Server
 	{
 
+		public final IntValue debugLevel;
 		public final IntValue respawnHealth;
-	
-
+		public final BooleanValue respawnXpLoss;	
+		public final IntValue respawnPercentage;
+		public final BooleanValue hardModeZombieDeaths;	
+		
 		public Server(ForgeConfigSpec.Builder builder)
 		{
 			builder.push("Villager Respawn Control Values");
+
+			debugLevel = builder
+					.comment("Debug Level: 0 = Off, 1 = Log, 2 = Chat+Log")
+					.translation(Main.MODID + ".config." + "debugLevel")
+					.defineInRange("debugLevel", () -> 0, 0, 2);
 			
 			respawnHealth = builder
 					.comment("Respawn Health")
 					.translation(Main.MODID + ".config." + "respawnHealth")
 					.defineInRange("respawnHealth", () -> 20, 1, 25);
 
+			respawnXpLoss = builder
+					.comment("Respawn XpLoss")
+					.translation(Main.MODID + ".config." + "respawnXpLoss")
+					.define ("respawnXpLoss", () -> true);
+			
+			respawnPercentage = builder
+					.comment("Respawn Percentage")
+					.translation(Main.MODID + ".config." + "respawnPercentage")
+					.defineInRange("respawnPercentage", () -> 104, 1, 110);
+
+			hardModeZombieDeaths = builder
+					.comment("Zombie Deaths In Hard Mode")
+					.translation(Main.MODID + ".config." + "hardModeZombieDeaths")
+					.define ("hardModeZombieDeaths", () -> true);
+			
 			builder.pop();
 		}
 	}
