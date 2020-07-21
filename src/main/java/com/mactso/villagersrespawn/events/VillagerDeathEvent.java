@@ -29,6 +29,7 @@ public class VillagerDeathEvent {
 			return;
 		}
 		
+		// ignore this on the client-side
 		if (!(eventEntity.world instanceof ServerWorld)) {
 			return;
 		}
@@ -66,7 +67,7 @@ public class VillagerDeathEvent {
 			if (villagerHome.isPresent()) {
 				GlobalPos gVHP = villagerHome.get();
 				BlockPos villagerHomePos = gVHP.getPos();
-				deathX = (int) ve.getPosX(); deathY = (int) ve.getPosY(); deathZ = (int) ve.getPosZ();
+				deathX = ve.getPosition().getX(); deathY = ve.getPosition().getY(); deathZ = ve.getPosition().getZ();
 				eventEntity.setPosition(villagerHomePos.getX(), villagerHomePos.getY(), villagerHomePos.getZ() );
 				ve.extinguish();
 				ve.setHealth(MyConfig.respawnHealth);
@@ -85,7 +86,7 @@ public class VillagerDeathEvent {
 							" at " + deathX +", " + deathY +", " + deathZ + ".");
 
 					System.out.println(
-							" Respawned at " + ve.getPosX() +", " + ve.getPosY() +", " + ve.getPosZ() + ".");
+							" Respawned at " + ve.getPosition().getX() +", " + ve.getPosition().getY() +", " + ve.getPosition().getZ() + ".");
 
 				}
 				event.setCanceled(true);
