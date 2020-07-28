@@ -1,10 +1,12 @@
 modLoader="javafml"
 loaderVersion="[32,)"
+license="MIT License"
 [[mods]]
 modId="villagersrespawn"
 version="${file.jarVersion}"
 displayName="Villagers Respawn  Mod"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/villagers-respawn"
+displayURL="https://www.curseforge.com/minecraft/mc-
+mods/villagers-respawn"
 updateJSONURL="https://github.com/mactso/VillagersRespawn/raw/master/update.json"
 logoFile="logo.png"
 authors="MacTso, Lupicus"
