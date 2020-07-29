@@ -24,7 +24,7 @@ public class Main {
 
 			FMLJavaModLoadingContext.get().getModEventBus().register(this);
 	        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER,MyConfig.SERVER_SPEC );
-			MinecraftForge.EVENT_BUS.register(this);
+//			MinecraftForge.EVENT_BUS.register(this);
 	    }
 
 	    // Register ourselves for server and other game events we are interested in
@@ -35,9 +35,9 @@ public class Main {
 			
 		}       
 
-		// in 14.4 and later, config file loads when the server starts when the world starts.
-		@SubscribeEvent 
-		public void onServerStarting (FMLServerStartingEvent event) {
-//			VillagerRespawnCommands.register(event.getCommandDispatcher());
-		}
+//		// in 14.4 and later, config file loads when the server starts when the world starts.
+//		@SubscribeEvent 
+//		public void onServerStarting (FMLServerStartingEvent event) {
+////			VillagerRespawnCommands.register(event.getCommandDispatcher());
+//		}
 }
