@@ -1,4 +1,4 @@
-// 15.2 - 1.0.0.0 Villager Respawn
+// 16.2 - 1.0.0.0 Villager Respawn
 package com.mactso.villagersrespawn;
 
 
@@ -8,10 +8,9 @@ import com.mactso.villagersrespawn.events.VillagerDeathEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("villagersrespawn")
