@@ -2,7 +2,6 @@ package com.mactso.villagersrespawn.events;
 
 import java.util.Optional;
 
-
 import com.mactso.villagersrespawn.config.MyConfig;
 
 import net.minecraft.entity.Entity;
@@ -14,9 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class VillagerDeathEvent {
@@ -72,11 +69,10 @@ public class VillagerDeathEvent {
 				ve.setHealth(MyConfig.respawnHealth);
 
 				if (MyConfig.respawnXpLoss) {
-					int xp = ve.getXp();
+
 					int level = ve.getVillagerData().getLevel();
 					ve.setXp(xpLevels[level-1]);
-					int pxp = ve.getXp();
-					int debug = 0;
+
 				}
 				if (MyConfig.debugLevel > 0) {
 					System.out.println("VillagersRespawn: Villager " 

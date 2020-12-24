@@ -18,13 +18,13 @@ import net.minecraftforge.fml.config.ModConfig;
 public class MyConfig
 {
 	private static final Logger LOGGER = LogManager.getLogger();
-	public static final Server SERVER;
-	public static final ForgeConfigSpec SERVER_SPEC;
+	public static final Common COMMON;
+	public static final ForgeConfigSpec COMMON_SPEC;
 	static
 	{
-		final Pair<Server, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Server::new);
-		SERVER_SPEC = specPair.getRight();
-		SERVER = specPair.getLeft();
+		final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
+		COMMON_SPEC = specPair.getRight();
+		COMMON = specPair.getLeft();
 	}
 
 	public static int debugLevel;
@@ -36,7 +36,7 @@ public class MyConfig
 	@SubscribeEvent
 	public static void onModConfigEvent(final ModConfig.ModConfigEvent configEvent)
 	{
-		if (configEvent.getConfig().getSpec() == MyConfig.SERVER_SPEC)
+		if (configEvent.getConfig().getSpec() == MyConfig.COMMON_SPEC)
 		{
 			bakeConfig();
 		}
@@ -44,16 +44,16 @@ public class MyConfig
 
 	public static void bakeConfig()
 	{
-		debugLevel = SERVER.debugLevel.get();
-		respawnHealth = SERVER.respawnHealth.get();
-		respawnXpLoss = SERVER.respawnXpLoss.get();
-		respawnPercentage = SERVER.respawnPercentage.get();
-		hardModeZombieDeaths = SERVER.hardModeZombieDeaths .get();
+		debugLevel = COMMON.debugLevel.get();
+		respawnHealth = COMMON.respawnHealth.get();
+		respawnXpLoss = COMMON.respawnXpLoss.get();
+		respawnPercentage = COMMON.respawnPercentage.get();
+		hardModeZombieDeaths = COMMON.hardModeZombieDeaths .get();
 
 	}
 
 
-	public static class Server
+	public static class Common
 	{
 
 		public final IntValue debugLevel;
@@ -62,7 +62,7 @@ public class MyConfig
 		public final IntValue respawnPercentage;
 		public final BooleanValue hardModeZombieDeaths;	
 		
-		public Server(ForgeConfigSpec.Builder builder)
+		public Common(ForgeConfigSpec.Builder builder)
 		{
 			builder.push("Villager Respawn Control Values");
 
