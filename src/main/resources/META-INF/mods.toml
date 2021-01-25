@@ -10,7 +10,7 @@ mods/villagers-respawn"
 updateJSONURL="https://github.com/mactso/VillagersRespawn/raw/master/update.json"
 logoFile="logo.png"
 authors="MacTso, Lupicus"
-description='''Villagers Respawn.'''
+description='Villagers Respawn.'
 [[dependencies.villagersrespawn]]
     modId="forge"
     mandatory=true
