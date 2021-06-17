@@ -76,6 +76,7 @@ public class VillagerDeathEvent {
 				}
 				
 				if (MyConfig.debugLevel > 0) {
+					
 					System.out.println("VillagersRespawn: Villager " 
 								+ deathMessage );
 					System.out.println(  
