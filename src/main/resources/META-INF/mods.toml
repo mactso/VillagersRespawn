@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[31,36)"
+loaderVersion="[32,36)"
 license="MIT License"
 [[mods]]
 modId="villagersrespawn"
@@ -14,7 +14,7 @@ description='Villagers Respawn.'
 [[dependencies.villagersrespawn]]
     modId="forge"
     mandatory=true
-    versionRange="[31,36)"
+    versionRange="[32,36)"
     ordering="NONE"
     side="BOTH"
 
