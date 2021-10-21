@@ -4,15 +4,15 @@ import java.util.Optional;
 
 import com.mactso.villagersrespawn.config.MyConfig;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.brain.Brain;
-import net.minecraft.entity.ai.brain.memory.MemoryModuleType;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.GlobalPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.Brain;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -26,11 +26,11 @@ public class VillagerDeathEvent {
 			return;
 		}
 		
-		if (!(eventEntity.level instanceof ServerWorld)) {
+		if (!(eventEntity.level instanceof ServerLevel)) {
 			return;
 		}
 		
-		if (eventEntity instanceof VillagerEntity) {
+		if (eventEntity instanceof Villager) {
 			// chance villager will really die
 			double randomD100Roll = eventEntity.level.random.nextDouble() * 100;
 			randomD100Roll = Math.ceil(randomD100Roll); 
@@ -45,20 +45,20 @@ public class VillagerDeathEvent {
 				return;
 			}
 
-			VillagerEntity ve = (VillagerEntity) eventEntity;
+			Villager ve = (Villager) eventEntity;
 			
 			// if zombie deaths true, will still become zombies in HARD mode
 			String deathMessage="Died for unknown reasons.";
 			int deathX, deathY, deathZ;
 			if (ve.getLastDamageSource() != null) {
 				deathMessage = ve.getLastDamageSource().getLocalizedDeathMessage(ve).toString();
-				if (ve.getLastDamageSource().getEntity() instanceof ZombieEntity) {
+				if (ve.getLastDamageSource().getEntity() instanceof Zombie) {
 					if ((ve.level.getDifficulty()== Difficulty.HARD ) && (MyConfig.hardModeZombieDeaths))
 					return;
 				}
 			}
 			//villager will respawn if they have a bed
-			Brain<VillagerEntity> vb =  ve.getBrain();
+			Brain<Villager> vb =  ve.getBrain();
 			Optional<GlobalPos> villagerHome = vb.getMemory(MemoryModuleType.HOME);
 			if (villagerHome.isPresent()) {
 				GlobalPos gVHP = villagerHome.get();
