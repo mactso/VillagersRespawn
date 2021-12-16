@@ -1,26 +1,25 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[39,)"
 license="MIT License"
 [[mods]]
 modId="villagersrespawn"
 version="${file.jarVersion}"
 displayName="Villagers Respawn  Mod"
-displayURL="https://www.curseforge.com/minecraft/mc-
-mods/villagers-respawn"
-updateJSONURL="https://github.com/mactso/VillagersRespawn/raw/master/update.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/villagers-respawn"
+updateJSONURL="https://github.com/mactso/VillagersRespawn/raw/main/update.json"
 logoFile="logo.png"
 authors="MacTso, Lupicus"
 description='Villagers Respawn.'
 [[dependencies.villagersrespawn]]
     modId="forge"
     mandatory=true
-    versionRange="[37,)"
+    versionRange="[39,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.villagersrespawn]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.17,1.18)"
+    versionRange="[1.18,1.19)"
     ordering="NONE"
     side="BOTH"
