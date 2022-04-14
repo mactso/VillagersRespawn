@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "villagersrespawn",
+  "version": "${version}",
+
+  "name": "Villagers Respawn",
+  "description": "Villagers may Respawn on Death if they have a bed.",
+  "authors": [
+    "Mactso, Lupicus"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/villagers-respawn"
+  },
+
+  "license": "MIT License",
+  "icon": "logo.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mactso.villagersrespawn.Main"
+    ]
+  },
+  "mixins": [
+    "villagersrespawn.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.18.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
