@@ -21,7 +21,7 @@ public class VillagerDeathEvent {
 	@SubscribeEvent
     public void doVillagerRespawn(LivingDeathEvent event) { 
 		
-		Entity eventEntity = event.getEntityLiving();
+		Entity eventEntity = event.getEntity();
 		if (event.getEntity() == null) {
 			return;
 		}
