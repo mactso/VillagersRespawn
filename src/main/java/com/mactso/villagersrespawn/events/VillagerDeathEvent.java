@@ -5,14 +5,13 @@ import java.util.Optional;
 import com.mactso.villagersrespawn.config.ModConfigs;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.Brain;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.dynamic.GlobalPos;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.GlobalPos;
 import net.minecraft.world.Difficulty;
 
 public class VillagerDeathEvent {
@@ -55,10 +54,11 @@ public class VillagerDeathEvent {
 			}
 		}
 		// villager will respawn if they have a bed
-		Brain<VillagerEntity> vb = ve.getBrain();
-		Optional<GlobalPos> villagerHome = vb.getOptionalMemory(MemoryModuleType.HOME);
-		if (villagerHome.isPresent()) {
-			GlobalPos gVHP = villagerHome.get();
+
+		Optional<GlobalPos> vhome;
+		if ((ve.getBrain().getOptionalMemory(MemoryModuleType.HOME)).isPresent()) {
+			vhome = ve.getBrain().getOptionalMemory(MemoryModuleType.HOME); 
+			GlobalPos gVHP = vhome.get();
 			BlockPos villagerHomePos = gVHP.getPos();
 			deathX = (int) ve.getX();
 			deathY = (int) ve.getY();
