@@ -2,8 +2,10 @@ package com.mactso.villagersrespawn.events;
 
 import java.util.Optional;
 
-import com.mactso.villagersrespawn.config.ModConfigs;
+import com.mactso.villagersrespawn.config.MyConfigs;
 
+import net.minecraft.block.BedBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.damage.DamageSource;
@@ -12,6 +14,7 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 
 public class VillagerDeathEvent {
@@ -37,7 +40,7 @@ public class VillagerDeathEvent {
 		if (difficulty == Difficulty.HARD) {
 			randomD100Roll += 10.0;
 		}
-		if (randomD100Roll > ModConfigs.getRespawnPercentage()) {
+		if (randomD100Roll > MyConfigs.getRespawnPercentage()) {
 			return false;
 		}
 
@@ -49,7 +52,7 @@ public class VillagerDeathEvent {
 		if (ve.getRecentDamageSource() != null) {
 			deathMessage = ve.getRecentDamageSource().getDeathMessage(ve).toString();
 			if (ve.getRecentDamageSource().getAttacker() instanceof ZombieEntity) {
-				if ((ve.world.getDifficulty() == Difficulty.HARD) && (ModConfigs.getHardModeZombieDeaths()))
+				if ((ve.world.getDifficulty() == Difficulty.HARD) && (MyConfigs.getHardModeZombieDeaths()))
 					return false;
 			}
 		}
@@ -60,30 +63,28 @@ public class VillagerDeathEvent {
 			vhome = ve.getBrain().getOptionalMemory(MemoryModuleType.HOME); 
 			GlobalPos gVHP = vhome.get();
 			BlockPos villagerHomePos = gVHP.getPos();
-			deathX = (int) ve.getX();
-			deathY = (int) ve.getY();
-			deathZ = (int) ve.getZ();
-			eventEntity.setPos(villagerHomePos.getX(), villagerHomePos.getY(), villagerHomePos.getZ());
-			ve.extinguish();
-			ve.setHealth(ModConfigs.getRespawnHealth());
+			BlockState bs = ve.getWorld().getBlockState(villagerHomePos);
+			if (bs.getBlock() instanceof BedBlock) {
+				Optional<Vec3d> standupPos = BedBlock.findWakeUpPosition(ve.getType(), ve.getWorld(), villagerHomePos, bs.get(BedBlock.FACING), 0);
+				if (standupPos.isPresent()) {
+					eventEntity.setPos(villagerHomePos.getX(), villagerHomePos.getY(), villagerHomePos.getZ());
+					ve.extinguish();
+					ve.clearStatusEffects();
+					ve.setHealth(MyConfigs.getRespawnHealth());
 
-			if (ModConfigs.getRespawnXpLoss()) {
-
-				int level = ve.getVillagerData().getLevel();
-				ve.setExperience(xpLevels[level - 1]);
-
+					doRespawnXpLoss(ve);
+					return true;
+					
+				}
 			}
-
-			if (ModConfigs.getDebugLevel() > 0) {
-
-				System.out.println("VillagersRespawn: Villager " + deathMessage);
-				System.out.println(" at " + deathX + ", " + deathY + ", " + deathZ + ".");
-
-				System.out.println(" Respawned at " + ve.getX() + ", " + ve.getY() + ", " + ve.getZ() + ".");
-
-			}
-			return true;
 		}
 		return false;
+	}
+
+	private static void doRespawnXpLoss(VillagerEntity ve) {
+		if (MyConfigs.getRespawnXpLoss()) {
+			int level = ve.getVillagerData().getLevel();
+			ve.setExperience(xpLevels[level - 1]);
+		}
 	}
 }

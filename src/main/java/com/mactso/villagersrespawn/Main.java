@@ -2,7 +2,7 @@
 package com.mactso.villagersrespawn;
 
 
-import com.mactso.villagersrespawn.config.ModConfigs;
+import com.mactso.villagersrespawn.config.MyConfigs;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -13,7 +13,7 @@ public class Main implements ModInitializer {
 		@Override
 		public void onInitialize() {
 
-			ModConfigs.registerConfigs();
+			MyConfigs.registerConfigs();
 
 
 		}

@@ -6,7 +6,7 @@ import com.mojang.datafixers.util.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ModConfigs {
+public class MyConfigs {
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 	
@@ -24,7 +24,7 @@ public class ModConfigs {
 	}
 
 	public static void setDebugLevel(int debugLevel) {
-		ModConfigs.debugLevel = debugLevel;
+		MyConfigs.debugLevel = debugLevel;
 	}
 
 	public static int getRespawnHealth() {
