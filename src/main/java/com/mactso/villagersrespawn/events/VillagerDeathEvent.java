@@ -2,23 +2,20 @@ package com.mactso.villagersrespawn.events;
 
 import java.util.Optional;
 
-import org.joml.Vector3d;
-
 import com.mactso.villagersrespawn.config.MyConfig;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.GlobalPos;
-import net.minecraft.world.Difficulty;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -33,15 +30,16 @@ public class VillagerDeathEvent {
 			return;
 		}
 
-		if (!(eventEntity.level instanceof ServerLevel)) {
+		if (!(eventEntity.level() instanceof ServerLevel)) {
 			return;
 		}
 
 		if (eventEntity instanceof Villager) {
 			// chance villager will really die
-			double randomD100Roll = eventEntity.level.random.nextDouble() * 100;
+			@SuppressWarnings("resource")  // this is an eclipse issue, not a java issue so suppress warning.
+			double randomD100Roll = eventEntity.level().random.nextDouble() * 100;
 			randomD100Roll = Math.ceil(randomD100Roll);
-			Difficulty difficulty = eventEntity.level.getDifficulty();
+			Difficulty difficulty = eventEntity.level().getDifficulty();
 			if (difficulty == Difficulty.NORMAL) {
 				randomD100Roll += 5.0;
 			}
@@ -58,7 +56,7 @@ public class VillagerDeathEvent {
 
 			if (ve.getLastDamageSource() != null) {
 				if (ve.getLastDamageSource().getEntity() instanceof Zombie) {
-					if ((ve.level.getDifficulty() == Difficulty.HARD) && (MyConfig.hardModeZombieDeaths))
+					if ((ve.level().getDifficulty() == Difficulty.HARD) && (MyConfig.hardModeZombieDeaths))
 						return;
 				}
 			}
@@ -68,9 +66,9 @@ public class VillagerDeathEvent {
 			if (villagerHome.isPresent()) {
 				GlobalPos gVHP = villagerHome.get();
 				BlockPos villagerHomePos = gVHP.pos();
-				BlockState bs = ve.getLevel().getBlockState(villagerHomePos);
+				BlockState bs = ve.level().getBlockState(villagerHomePos);
 				if (bs.getBlock() instanceof BedBlock) {
-					Optional<Vec3> standupPos = BedBlock.findStandUpPosition(ve.getType(), ve.getLevel(),
+					Optional<Vec3> standupPos = BedBlock.findStandUpPosition(ve.getType(), ve.level(),
 							villagerHomePos, bs.getValue(BedBlock.FACING) , 0);
 
 					if (standupPos.isPresent()) {
