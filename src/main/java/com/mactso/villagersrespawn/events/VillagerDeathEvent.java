@@ -22,7 +22,7 @@ public class VillagerDeathEvent {
 
 	public static boolean doVillagerRespawn(LivingEntity eventEntity, DamageSource d) {
 
-		if (!(eventEntity.world instanceof ServerWorld)) {
+		if (!(eventEntity.getWorld() instanceof ServerWorld)) {
 			return false;
 		}
 
@@ -31,9 +31,10 @@ public class VillagerDeathEvent {
 		}
 
 		// chance villager will really die
-		double randomD100Roll = eventEntity.world.random.nextDouble() * 100;
+		
+		double randomD100Roll = eventEntity.getWorld().getRandom().nextDouble() * 100;
 		randomD100Roll = Math.ceil(randomD100Roll);
-		Difficulty difficulty = eventEntity.world.getDifficulty();
+		Difficulty difficulty = eventEntity.getWorld().getDifficulty();
 		if (difficulty == Difficulty.NORMAL) {
 			randomD100Roll += 5.0;
 		}
@@ -52,7 +53,7 @@ public class VillagerDeathEvent {
 		if (ve.getRecentDamageSource() != null) {
 			deathMessage = ve.getRecentDamageSource().getDeathMessage(ve).toString();
 			if (ve.getRecentDamageSource().getAttacker() instanceof ZombieEntity) {
-				if ((ve.world.getDifficulty() == Difficulty.HARD) && (MyConfigs.getHardModeZombieDeaths()))
+				if ((ve.getWorld().getDifficulty() == Difficulty.HARD) && (MyConfigs.getHardModeZombieDeaths()))
 					return false;
 			}
 		}
