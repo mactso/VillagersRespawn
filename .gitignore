@@ -1,14 +1,8 @@
-.gradle
-/build/
 /.classpath
+/.gradle/
 /.settings/
 /bin/
 /run/
 /build/
 /.project
-/runClient.launch
-/runData.launch
-/runServer.launch
-/build.gradle.bak
-/VillagersRespawn_client.launch
-/VillagersRespawn_server.launch
+/*.launch
