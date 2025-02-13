@@ -7,13 +7,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mactso.villagersrespawn.events.VillagerDeathEvent;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+
 
 @Mixin(LivingEntity.class)
 	abstract class LivingEntityMixin {
 
-	    @Inject(method = "onDeath", at = @At("HEAD"), cancellable = true)
+	    @Inject(method = "die ", at = @At("HEAD"), cancellable = true)
 	    private void onEntityKilled(DamageSource source, CallbackInfo ci) {
 	        if (VillagerDeathEvent.doVillagerRespawn((LivingEntity) (Object) this, source)) {
 	            ci.cancel();
