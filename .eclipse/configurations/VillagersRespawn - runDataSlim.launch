@@ -3,10 +3,10 @@
   <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="VillagersRespawn"/>
   <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.minecraftforge.bootstrap.ForgeBootstrap"/>
   <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=REGISTRIES -Djava.net.preferIPv6Addresses=system"/>
-  <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--launchTarget forge_userdev_data --assetIndex 17 --assetsDir C:\Users\Mac\.gradle\caches\forge_gradle\assets --gameDir . --mod villagersrespawn --all --output C:\Workspaces\Minecraft\Forge\1.21.1\VillagersRespawn\VillagersRespawn\src\generated\resources --existing C:\Workspaces\Minecraft\Forge\1.21.1\VillagersRespawn\VillagersRespawn\src\main\resources"/>
-  <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:\Workspaces\Minecraft\Forge\1.21.1\VillagersRespawn\VillagersRespawn\run-data"/>
+  <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--launchTarget forge_userdev_data --assetIndex 19 --assetsDir C:\Users\Mac\.gradle\caches\forge_gradle\assets --gameDir . --mod villagersrespawn --all --output &quot;C:\Workspaces\Minecraft\Forge\1.21.4\Villagers Respawn\VillagersRespawn\src\generated\resources&quot; --existing &quot;C:\Workspaces\Minecraft\Forge\1.21.4\Villagers Respawn\VillagersRespawn\src\main\resources&quot;"/>
+  <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:\Workspaces\Minecraft\Forge\1.21.4\Villagers Respawn\VillagersRespawn\run-data"/>
   <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-    <mapEntry key="MOD_CLASSES" value="C:\Workspaces\Minecraft\Forge\1.21.1\VillagersRespawn\VillagersRespawn\bin\main;C:\Workspaces\Minecraft\Forge\1.21.1\VillagersRespawn\VillagersRespawn\bin\main"/>
-    <mapEntry key="MCP_MAPPINGS" value="official_1.21.1"/>
+    <mapEntry key="MOD_CLASSES" value="C:\Workspaces\Minecraft\Forge\1.21.4\Villagers Respawn\VillagersRespawn\bin\main;C:\Workspaces\Minecraft\Forge\1.21.4\Villagers Respawn\VillagersRespawn\bin\main"/>
+    <mapEntry key="MCP_MAPPINGS" value="official_1.21.4"/>
   </mapAttribute>
 </launchConfiguration>

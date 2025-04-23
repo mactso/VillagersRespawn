@@ -7,7 +7,6 @@ import com.mactso.villagersrespawn.events.VillagerDeathEvent;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -18,12 +17,11 @@ public class Main {
 
 	    public static final String MODID = "villagersrespawn"; 
 	    
-	    public Main()
+	    public Main(FMLJavaModLoadingContext context)
 	    {
+			context.getModEventBus().register(this);
+			context.registerConfig(ModConfig.Type.COMMON, MyConfig.COMMON_SPEC);
 
-			FMLJavaModLoadingContext.get().getModEventBus().register(this);
-	        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON,MyConfig.COMMON_SPEC );
-//			MinecraftForge.EVENT_BUS.register(this);
 	    }
 
 	    // Register ourselves for server and other game events we are interested in
@@ -34,9 +32,4 @@ public class Main {
 			
 		}       
 
-//		// in 14.4 and later, config file loads when the server starts when the world starts.
-//		@SubscribeEvent 
-//		public void onServerStarting (FMLServerStartingEvent event) {
-////			VillagerRespawnCommands.register(event.getCommandDispatcher());
-//		}
 }
