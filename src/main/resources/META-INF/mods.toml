@@ -1,5 +1,6 @@
-modLoader="javafml"
-loaderVersion="[54,)"
+# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
+modLoader="javafml" #mandatory
+loaderVersion="[55,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 license="MIT License"
 [[mods]]
 modId="villagersrespawn"
@@ -13,13 +14,13 @@ description='Villagers Respawn.'
 [[dependencies.villagersrespawn]]
     modId="forge"
     mandatory=true
-    versionRange="[54,)"
+    versionRange="[55,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.villagersrespawn]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.21.4,1.22)"
+    versionRange="[1.21.5,1.22)"
     ordering="NONE"
     side="BOTH"

@@ -1,4 +1,4 @@
-.gradle
+/.gradle/
 /build/
 /.classpath
 /.settings/
@@ -6,7 +6,5 @@
 /run/
 /build/
 /.project
-/runClient.launch
-/runData.launch
-/runServer.launch
-/build.gradle.bak
+/.metadata/
+*.launch
