@@ -17,21 +17,24 @@ import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+
+@Mod.EventBusSubscriber() 
 public class VillagerDeathEvent {
 	private static final int[] xpLevels = new int[] { 0, 10, 70, 150, 250 };
 
 	@SubscribeEvent
-	public void doVillagerRespawn(LivingDeathEvent event) {
+	public static boolean doVillagerRespawn(LivingDeathEvent event) {
 
 		Entity eventEntity = event.getEntity();
 		if (event.getEntity() == null) {
-			return;
+			return MyConfig.CONTINUE_EVENT;
 		}
 
 		if (!(eventEntity.level() instanceof ServerLevel)) {
-			return;
+			return MyConfig.CONTINUE_EVENT;
 		}
 
 		if (eventEntity instanceof Villager) {
@@ -47,7 +50,7 @@ public class VillagerDeathEvent {
 				randomD100Roll += 10.0;
 			}
 			if (randomD100Roll > MyConfig.respawnPercentage) {
-				return;
+				return MyConfig.CONTINUE_EVENT;
 			}
 
 			Villager ve = (Villager) eventEntity;
@@ -57,7 +60,7 @@ public class VillagerDeathEvent {
 			if (ve.getLastDamageSource() != null) {
 				if (ve.getLastDamageSource().getEntity() instanceof Zombie) {
 					if ((ve.level().getDifficulty() == Difficulty.HARD) && (MyConfig.hardModeZombieDeaths))
-						return;
+						return MyConfig.CONTINUE_EVENT;
 				}
 			}
 			// villager will respawn if they have a bed
@@ -77,14 +80,15 @@ public class VillagerDeathEvent {
 						ve.removeAllEffects();
 						ve.setHealth(MyConfig.respawnHealth);
 						doRespawnXpLoss(ve);
-						event.setCanceled(true);
+						return MyConfig.CANCEL_EVENT;
 					}
 				}
 			}
 		}
+		return MyConfig.CONTINUE_EVENT;
 	}
 
-	private void doRespawnXpLoss(Villager ve) {
+	private static void doRespawnXpLoss(Villager ve) {
 		if (MyConfig.respawnXpLoss) {
 			int level = ve.getVillagerData().level();
 			if (level >= 1) {

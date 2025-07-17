@@ -9,7 +9,7 @@ import com.mactso.villagersrespawn.Main;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 
@@ -18,6 +18,8 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class MyConfig
 {
 	private static final Logger LOGGER = LogManager.getLogger();
+	public static final boolean CANCEL_EVENT = true;
+	public static final boolean CONTINUE_EVENT = false;
 	public static final Common COMMON;
 	public static final ForgeConfigSpec COMMON_SPEC;
 	static
