@@ -87,7 +87,7 @@ public class VillagerDeathEvent {
 
 	private static void doRespawnXpLoss(Villager ve) {
 		if (MyConfigs.getRespawnXpLoss()) {
-			int level = ve.getVillagerData().getLevel();
+			int level = ve.getVillagerData().level();
 			ve.overrideXp(xpLevels[level - 1]);
 		}
 	}
