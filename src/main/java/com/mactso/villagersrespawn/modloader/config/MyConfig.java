@@ -1,28 +1,31 @@
-package com.mactso.villagersrespawn.config;
+package com.mactso.villagersrespawn.modloader.config;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.mactso.villagersrespawn.Main;
+import com.mactso.villagersrespawn.modloader.main.Main;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
-@Mod.EventBusSubscriber(modid = Main.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
-// @Mod.EventBusSubscriber(modid = Main.MODID, bus=Mod.EventBusSubscriber.Bus.MOD)
-public class MyConfig
-{
+@EventBusSubscriber(modid = Main.MODID)
+public class MyConfig {
+
+	
+	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogManager.getLogger();
 	public static final Common COMMON;
-	public static final ForgeConfigSpec COMMON_SPEC;
-	static
-	{
-		final Pair<Common, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(Common::new);
+	public static final ModConfigSpec COMMON_SPEC;
+	
+	
+	static {
+
+		final Pair<Common, ModConfigSpec> specPair = new ModConfigSpec.Builder().configure(Common::new);
 		COMMON_SPEC = specPair.getRight();
 		COMMON = specPair.getLeft();
 	}
@@ -32,15 +35,15 @@ public class MyConfig
 	public static boolean respawnXpLoss;
 	public static int respawnPercentage;
 	public static boolean hardModeZombieDeaths;
-	
+
 	@SubscribeEvent
-	public static void onModConfigEvent(final ModConfigEvent configEvent)
-	{
-		if (configEvent.getConfig().getSpec() == MyConfig.COMMON_SPEC)
-		{
+	public static void onModConfigEvent(final ModConfigEvent configEvent) {
+		if (configEvent.getConfig().getSpec() == MyConfig.COMMON_SPEC) {
 			bakeConfig();
 		}
 	}
+	
+
 
 	public static void bakeConfig()
 	{
@@ -62,8 +65,7 @@ public class MyConfig
 		public final IntValue respawnPercentage;
 		public final BooleanValue hardModeZombieDeaths;	
 		
-		public Common(ForgeConfigSpec.Builder builder)
-		{
+		public Common(ModConfigSpec.Builder builder) {
 			builder.push("Villager Respawn Control Values");
 
 			debugLevel = builder
