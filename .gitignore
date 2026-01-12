@@ -1,13 +1,17 @@
-.gradle
-/build/
-/.classpath
-/.settings/
-/bin/
-/run/
-/build/
-/.project
-.eclipse
-/runClient.launch
-/runData.launch
-/runServer.launch
-/build.gradle.bak
+# Gradle
+.gradle/
+build/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+.eclipse/
+*.launch
+
+# NeoForge runtime
+run/
+
+# Local backups
+build.gradle.bak
