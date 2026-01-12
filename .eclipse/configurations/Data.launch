@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="VillagersRespawn"></stringAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.neoforged.devlaunch.Main"></stringAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value=" @C:\\Workspaces\\Minecraft\\NeoForge\\1.21.1\\VillagersRespawn\\VillagersRespawn\\build\\moddev\\dataRunProgramArgs.txt"></stringAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value=" @C:\\Workspaces\\Minecraft\\NeoForge\\1.21.1\\VillagersRespawn\\VillagersRespawn\\build\\moddev\\dataRunVmArgs.txt -Dfml.modFolders=villagersrespawn%%C:\\Workspaces\\Minecraft\\NeoForge\\1.21.1\\VillagersRespawn\\VillagersRespawn\\bin\\main"></stringAttribute>
+    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="C:\Workspaces\Minecraft\NeoForge\1.21.1\VillagersRespawn\VillagersRespawn\run"></stringAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.STOP_IN_MAIN" value="false"></booleanAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"></booleanAttribute>
+</launchConfiguration>
