@@ -1,17 +1,26 @@
-# Gradle
-.gradle/
-build/
-
-# Eclipse
-.project
-.classpath
-.settings/
-bin/
-.eclipse/
+# eclipse
+bin
 *.launch
+.settings
+.metadata
+.classpath
+.project
 
-# NeoForge runtime
-run/
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-# Local backups
-build.gradle.bak
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+runs
+run-data
+
+repo

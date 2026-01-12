@@ -94,7 +94,7 @@ public final class VillagerDeathLogic {
     private static void applyXpLoss(Villager villager) {
         if (!MyConfig.respawnXpLoss) return;
 
-        int level = villager.getVillagerData().getLevel();
+        int level = villager.getVillagerData().level();
         if (level >= 1 && level <= XP_LEVELS.length) {
             villager.overrideXp(XP_LEVELS[level - 1]);
         }
