@@ -9,6 +9,7 @@ build/
 bin/
 .eclipse/
 *.launch
+eclipse
 
 # NeoForge runtime
 run/
