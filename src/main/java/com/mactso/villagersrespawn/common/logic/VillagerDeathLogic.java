@@ -7,6 +7,7 @@ import com.mactso.villagersrespawn.modloader.config.MyConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
@@ -54,7 +55,8 @@ public final class VillagerDeathLogic {
     /* -------------------- helpers -------------------- */
 
     private static boolean passesDeathChance(ServerLevel level) {
-        double roll = Math.ceil(level.random.nextDouble() * 100);
+    	RandomSource rand = level.getRandom();
+        double roll = Math.ceil(rand.nextDouble() * 100);
         Difficulty difficulty = level.getDifficulty();
 
         if (difficulty == Difficulty.NORMAL) roll += 5;
